@@ -23,18 +23,19 @@ try:
             break
         if ord(value[-1])<ord('0') or ord(value[-1])>ord('9'):
             print("Не число")
-            break
+        
         elif isfloat(value):
             print("Нецелое число")
-            break
+        
         elif int(value)<0:
             print("Отрицательное число")
-            break
+        
         elif int(value)>255:
             print("Большое число")
-            break
-        GPIO.output(dac, decimal2binary(int(value)))
-        print("Voltage:",3.3/256*int(value))
+        
+        else:
+            GPIO.output(dac, decimal2binary(int(value)))
+            print("Voltage:",3.3/256*int(value))
 finally:
     GPIO.output(dac,0)
     GPIO.cleanup()
